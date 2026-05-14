@@ -1,0 +1,164 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+
+  --bg: #0a0f1c;
+  --panel: #0f172a;
+  --card: #111827;
+  --border: #1f2937;
+
+  --text: #e5e7eb;
+  --muted: #94a3b8;
+
+  --green: #22c55e;
+  --red: #ef4444;
+  --blue: #3b82f6;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* MAIN LAYOUT */
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 24px;
+}
+
+h1 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+/* GRID DASHBOARD */
+.grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 16px;
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* CARDS */
+.card {
+  background: linear-gradient(180deg, var(--card), var(--panel));
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+}
+
+/* SECTION TITLES */
+h2 {
+  font-size: 14px;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+
+/* =========================
+   FORM (FIXED COMPACT GRID)
+========================= */
+
+form {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(140px, 1fr));
+  gap: 20px;
+
+  /* align-items: end; */
+  /* max-width: 520px; */
+}
+
+form h2 {
+  grid-column: span 2;
+}
+
+/* LABELS */
+label {
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 4px;
+  display: block;
+}
+
+/* INPUTS (NO MORE FULL STRETCH LOOK) */
+input,
+select {
+  width: 100%;
+  padding: 8px 5px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: #0b1220;
+  color: var(--text);
+  outline: none;
+  font-size: 13px;
+  transition: 0.2s;
+}
+
+input:focus,
+select:focus {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 2px rgba(59,130,246,0.15);
+}
+
+/* BUTTON */
+button {
+  grid-column: span 2;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  background: var(--blue);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+  font-size: 13px;
+}
+
+button:hover {
+  transform: translateY(-1px);
+  background: #2563eb;
+}
+
+/* =========================
+   LIST ITEMS (TRANSACTIONS)
+========================= */
+
+.item {
+  background: #0b1220;
+  border: 1px solid var(--border);
+  padding: 12px;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  transition: 0.2s;
+}
+
+.item:hover {
+  transform: scale(1.01);
+}
+
+/* PROFIT COLORS */
+.profit {
+  color: var(--green);
+}
+
+.loss {
+  color: var(--red);
+}
+
+/* ERROR + EMPTY STATES */
+.error {
+  color: var(--red);
+  font-size: 13px;
+}
+
+.empty {
+  color: var(--muted);
+  font-size: 13px;
+}
