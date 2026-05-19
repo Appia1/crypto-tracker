@@ -1,12 +1,13 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Inter, system-ui, sans-serif;
 
-  --bg: #0a0f1c;
-  --panel: #0f172a;
-  --card: #111827;
-  --border: #1f2937;
+  --bg-1: #06111f;
+  --bg-2: #0f2747;
+  --glass: rgba(255, 255, 255, 0.08);
+  --glass-2: rgba(255, 255, 255, 0.05);
+  --border: rgba(255, 255, 255, 0.12);
 
-  --text: #e5e7eb;
+  --text: #f8fafc;
   --muted: #94a3b8;
 
   --green: #22c55e;
@@ -14,151 +15,196 @@
   --blue: #3b82f6;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
-  background: var(--bg);
+  min-height: 100vh;
   color: var(--text);
+  background:
+    radial-gradient(circle at top left, #1d4ed8 0%, transparent 30%),
+    radial-gradient(circle at bottom right, #06b6d4 0%, transparent 30%),
+    linear-gradient(135deg, var(--bg-1), var(--bg-2));
 }
 
-/* MAIN LAYOUT */
+/* App wrapper */
 .container {
-  max-width: 1200px;
-  margin: auto;
-  padding: 24px;
+  max-width: 430px;
+  margin: 0 auto;
+  padding: 18px 14px 40px;
 }
 
+/* Header */
 h1 {
-  font-size: 28px;
+  font-size: 24px;
   font-weight: 700;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
+  text-align: left;
+  letter-spacing: -0.5px;
 }
 
-/* GRID DASHBOARD */
+h2 {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+/* Glass cards */
+.card {
+  background: var(--glass);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  border: 1px solid var(--border);
+  border-radius: 24px;
+
+  padding: 18px;
+  margin-bottom: 16px;
+
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.22),
+    inset 0 1px 0 rgba(255,255,255,0.05);
+}
+
+/* Dashboard sections stack vertically for mobile */
 .grid {
-  display: grid;
-  grid-template-columns: 1.2fr 1fr;
+  display: flex;
+  flex-direction: column;
   gap: 16px;
 }
 
-@media (max-width: 900px) {
-  .grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* CARDS */
-.card {
-  background: linear-gradient(180deg, var(--card), var(--panel));
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 16px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.35);
-}
-
-/* SECTION TITLES */
-h2 {
-  font-size: 14px;
-  color: var(--muted);
-  margin-bottom: 12px;
-}
-
-/* =========================
-   FORM (FIXED COMPACT GRID)
-========================= */
-
+/* Form */
 form {
   display: grid;
-  grid-template-columns: repeat(5, minmax(140px, 1fr));
-  gap: 20px;
-
-  /* align-items: end; */
-  /* max-width: 520px; */
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
 }
 
 form h2 {
   grid-column: span 2;
 }
 
-/* LABELS */
 label {
-  font-size: 12px;
-  color: var(--muted);
-  margin-bottom: 4px;
   display: block;
+  font-size: 11px;
+  margin-bottom: 6px;
+  color: var(--muted);
 }
 
-/* INPUTS (NO MORE FULL STRETCH LOOK) */
-input,
-select {
-  width: 100%;
-  padding: 8px 5px;
-  border-radius: 10px;
+input {
+   width: 100%;
+  padding: 12px;
+  border-radius: 16px;
   border: 1px solid var(--border);
-  background: #0b1220;
-  color: var(--text);
+  background: rgb(73, 70, 70)-glass-2);
+  color: #333;
   outline: none;
   font-size: 13px;
-  transition: 0.2s;
+  backdrop-filter: blur(10px);
+}
+
+select {
+  width: 100%;
+  padding: 12px;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  background: white;
+  color: #333;
+  outline: none;
+  font-size: 13px;
+  backdrop-filter: blur(10px);
 }
 
 input:focus,
 select:focus {
-  border-color: var(--blue);
-  box-shadow: 0 0 0 2px rgba(59,130,246,0.15);
+  border-color: rgba(59, 130, 246, 0.5);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
 }
 
-/* BUTTON */
+/* Button */
 button {
   grid-column: span 2;
-  padding: 10px;
-  border-radius: 10px;
+  padding: 13px;
   border: none;
-  background: var(--blue);
+  border-radius: 18px;
+  background: linear-gradient(135deg, #2563eb, #06b6d4);
   color: white;
   font-weight: 600;
+  font-size: 14px;
   cursor: pointer;
-  transition: 0.2s;
-  font-size: 13px;
+  transition: 0.25s ease;
 }
 
 button:hover {
-  transform: translateY(-1px);
-  background: #2563eb;
+  transform: translateY(-2px);
+  opacity: 0.95;
 }
 
-/* =========================
-   LIST ITEMS (TRANSACTIONS)
-========================= */
-
+/* Item cards */
 .item {
-  background: #0b1220;
-  border: 1px solid var(--border);
-  padding: 12px;
-  border-radius: 12px;
-  margin-bottom: 10px;
-  transition: 0.2s;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 18px;
+  padding: 14px;
+  margin-bottom: 12px;
+  backdrop-filter: blur(12px);
 }
 
-.item:hover {
-  transform: scale(1.01);
+.item b {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
 }
 
-/* PROFIT COLORS */
+.item p {
+  margin: 6px 0;
+  font-size: 13px;
+  color: #dbeafe;
+}
+
+/* Profit / loss */
 .profit {
   color: var(--green);
+  font-weight: 600;
 }
 
 .loss {
   color: var(--red);
+  font-weight: 600;
 }
 
-/* ERROR + EMPTY STATES */
 .error {
-  color: var(--red);
-  font-size: 13px;
+  color: #fca5a5;
+  font-size: 12px;
+  margin-top: 6px;
 }
 
 .empty {
   color: var(--muted);
   font-size: 13px;
+}
+
+/* Portfolio summary numbers */
+.summary-value {
+  font-size: 28px;
+  font-weight: 700;
+  margin: 8px 0;
+  letter-spacing: -0.8px;
+}
+
+.summary-label {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* Desktop fallback */
+@media (min-width: 768px) {
+  .container {
+    max-width: 520px;
+  }
 }

@@ -1,7 +1,7 @@
 export const coins = [
-  "bitcoin",
-  "ethereum",
-  "solana",
-  "dogecoin",
-  "ripple",
+  "Bitcoin",
+  "Ethereum",
+  "Solana",
+  "Dogecoin",
+  "Ripple",
 ];

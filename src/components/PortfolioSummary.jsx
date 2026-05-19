@@ -1,12 +1,20 @@
 function PortfolioSummary({ portfolio }) {
   return (
     <div>
-      <h2>Portfolio Summary</h2>
+      <h2>Portfolio Overview</h2>
 
-      <p>Total Portfolio Value: ${portfolio.totalValue.toFixed(2)}</p>
-      <p>
-        Total Realized Profit/Loss: $
-        {portfolio.totalRealizedPnL.toFixed(2)}
+      <div className="summary-value">
+        ${portfolio.totalValue.toFixed(2)}
+      </div>
+
+      <div className="summary-label">Total Portfolio Value</div>
+
+      <p
+        className={
+          portfolio.totalRealizedPnL >= 0 ? "profit" : "loss"
+        }
+      >
+        Realized P&L: ${portfolio.totalRealizedPnL.toFixed(2)}
       </p>
     </div>
   );
