@@ -97,12 +97,12 @@ label {
 }
 
 input {
-   width: 100%;
+  width: 100%;
   padding: 12px;
   border-radius: 16px;
   border: 1px solid var(--border);
-  background: rgb(73, 70, 70)-glass-2);
-  color: #333;
+  background: rgba(255, 255, 255, 0.08);
+  color: #f8fafc;
   outline: none;
   font-size: 13px;
   backdrop-filter: blur(10px);
@@ -113,8 +113,8 @@ select {
   padding: 12px;
   border-radius: 16px;
   border: 1px solid var(--border);
-  background: white;
-  color: #333;
+  background: rgba(255, 255, 255, 0.08);
+  color: #f8fafc;
   outline: none;
   font-size: 13px;
   backdrop-filter: blur(10px);
